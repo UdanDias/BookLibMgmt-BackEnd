@@ -64,6 +64,23 @@ public class StaffController {
         }
 
     }
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> deleteStaff2(@RequestParam("staffId") String staffId){
+        if(staffId==null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        try{
+            staffService.deleteStaff(staffId);
+            return ResponseEntity.noContent().build();
+        }catch(StaffNotFoundException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
     @PatchMapping( consumes = APPLICATION_JSON_VALUE,produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void>updateStaff(@RequestParam("staffId") String staffId, @RequestBody StaffDTO staffDTO){
         if(staffId==null||staffDTO==null){
