@@ -24,7 +24,9 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public void addStaff(StaffDTO staffDTO) {
         staffDTO.setStaffId(UtilData.generateStaffId());
+        staffDTO.setJoinDate(UtilData.generateTodayDate());
         staffDTO.setLastUpdateDate(UtilData.generateTodayDate());
+        staffDTO.setLastUpdateTime(UtilData.generateCurrentTime());
         staffDao.save(entityDTOConvert.convertStaffDTOtoStaffEntity(staffDTO));
     }
 

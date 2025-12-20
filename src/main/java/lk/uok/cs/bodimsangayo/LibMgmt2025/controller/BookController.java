@@ -39,7 +39,7 @@ public class BookController {
 //        return "Health check running";
 //    }
 
-    @PostMapping(consumes= APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void>addBook(@RequestBody BookDTO bookDTO){
         if(bookDTO==null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
